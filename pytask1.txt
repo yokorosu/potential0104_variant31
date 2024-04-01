@@ -1,0 +1,11 @@
+import csv
+
+
+with open('history_mirror.csv', encoding='utf8') as file:
+    reader = csv.reader(file, delimiter=',')
+    answer = list(reader)[1:]
+    # Считывание файла
+    # Поиск в файле по значению столбца вердикт
+    for date, username, verdict in answer:
+        if verdict == 'Победа над смертью':
+            print(f'Сообщение было зафиксировано: {date} у пользователя {username}')
