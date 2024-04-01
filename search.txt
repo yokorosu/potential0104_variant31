@@ -1,0 +1,17 @@
+import csv
+
+with open('history_mirror.csv', encoding='utf8') as f:
+    reader = list(csv.DictReader(f, delimiter=',', quotechar='"'))
+    data = sorted(reader, key=lambda x: x['username'])
+    username = input()
+    while username != "stop":
+        for el in data:
+            if el['username'] == username:
+                surname, name, patronumic = el["username"].split()
+                verdict = el['verdict']
+                print(f'Предсказание для {name} {patronumic} - {verdict}')
+                break
+            else:
+                print('Вас не нашлось в записях')
+
+            username = input()
