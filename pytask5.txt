@@ -1,0 +1,29 @@
+import csv
+
+# Функиц для создания Хэша
+def generate_hash(s: str):
+    alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ '
+    d = {l: i for i, l in enumerate(alphabet, 1)}
+    p = 67
+    m = 1e9 + 9
+    hash_value = 0
+    p_pow = 1
+    for c in s:
+        hash_value = (hash_value + d[c] * p_pow) % m
+        p_pow = (p_pow * p) % m
+    return int(hash_value)
+
+
+users_with_hash = []
+# Считывание файла
+with open('history_mirror.csv', encoding='utf-8') as file:
+    reader = list(csv.DictReader(file, delimiter=',', quotechar='"'))
+    for row in reader:
+        row['ID'] = generate_hash(row['username'])
+        users_with_hash.append(row)
+
+# Запись в новый файл
+with open('users_with_hash.csv', 'w', newline='', encoding='utf-8') as file:
+    w = csv.DictWriter(file, fieldnames=['ID', 'date', 'username', 'verdict'])
+    w.writeheader()
+    w.writerows(users_with_hash)
