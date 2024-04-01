@@ -20,7 +20,7 @@
 
 ## Установка проекта
 1. Скопируйте к себе git репозиторий с помощью команды
-   '[git clone hhttps://github.com/yokorosu/](https://github.com/yokorosu/potential0104_variant31/)'
+   '[git clone hhttps://github.com/yokorosu/potential0104_variant31/)]'
 2. Запустите любой python-файл проекта с помощью команды
    'python3 <название_файла>'
 
